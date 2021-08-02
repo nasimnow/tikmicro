@@ -1,11 +1,14 @@
 // install express with `npm install express`
 const express = require("express");
-const { getUserProfileInfo } = require("tiktok-scraper");
+const { getVideoMeta } = require("tiktok-scraper");
 const app = express();
 
 app.get("/", async (req, res) => {
   try {
-    const userMeta = await getUserProfileInfo("tiktok", {});
+    const userMeta = await getVideoMeta(
+      "https://www.tiktok.com/@tiktok/video/6800111723257941253",
+      {}
+    );
     console.log(userMeta);
     res.send(userMeta);
   } catch (error) {
